@@ -1,0 +1,7 @@
+name: BetterSmithing
+version: '${project.version}'
+main: dev.baraus.bettersmithing.BetterSmithing
+api-version: 1.19
+prefix: BetterSmithing
+authors: [ baraus ]
+description: A plugin that upgrades Smithing Table
