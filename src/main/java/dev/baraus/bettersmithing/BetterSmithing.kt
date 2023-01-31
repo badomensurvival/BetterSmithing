@@ -1,5 +1,6 @@
 package dev.baraus.bettersmithing
 
+import org.bstats.bukkit.Metrics
 import org.bukkit.Bukkit.addRecipe
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -59,6 +60,10 @@ class BetterSmithing : JavaPlugin(), Listener {
 
     override fun onEnable() {
         server.pluginManager.registerEvents(this, this)
+
+        val pluginId = 17593 // <-- Replace with the id of your plugin!
+
+        Metrics(this, pluginId)
 
         addToolsRecipe(woodenTools, stoneTools, Material.STONE, "WOODEN_", "STONE_")
         addToolsRecipe(stoneTools, ironTools, Material.IRON_INGOT, "STONE_", "IRON_")
