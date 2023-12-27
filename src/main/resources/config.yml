@@ -3,6 +3,9 @@
 # upgrade_to is the item that will be created when upgrading the item
 # upgrade_item is the item that will be consumed when upgrading the item
 
+# See https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+template: AIR
+
 tiers:
   leather:
     upgrade_to: golden

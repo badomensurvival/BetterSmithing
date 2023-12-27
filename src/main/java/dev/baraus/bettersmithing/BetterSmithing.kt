@@ -43,6 +43,7 @@ class BetterSmithing : JavaPlugin(), Listener {
     }
 
     fun addToolsRecipe(
+        template: Material,
         baseTools: List<Material>,
         resultTools: List<Material>,
         additionMaterial: Material,
@@ -56,7 +57,7 @@ class BetterSmithing : JavaPlugin(), Listener {
             val recipe = SmithingTransformRecipe(
                 NamespacedKey(this, tool.name + '_' + equivalent.name),
                 ItemStack(equivalent),
-                RecipeChoice.MaterialChoice(Material.AIR),
+                RecipeChoice.MaterialChoice(template),
                 RecipeChoice.MaterialChoice(tool),
                 RecipeChoice.MaterialChoice(additionMaterial)
             )
@@ -70,6 +71,8 @@ class BetterSmithing : JavaPlugin(), Listener {
         val config = config
         saveDefaultConfig()
 
+        val template = config.getString("template").toString().ifEmpty { "AIR" }
+        val templateMaterial = Material.getMaterial(template)
         val tiers = config.getConfigurationSection("tiers")
         val tiersMap = hashMapOf(
             "leather" to leatherTools,
@@ -88,6 +91,7 @@ class BetterSmithing : JavaPlugin(), Listener {
                     val upgradeToTools = tiersMap[upgradeTo]
                     if (upgradeToTools != null && upgradeItem != null) {
                         addToolsRecipe(
+                            templateMaterial as Material,
                             tools,
                             upgradeToTools,
                             Material.valueOf(upgradeItem.uppercase()),
@@ -103,11 +107,6 @@ class BetterSmithing : JavaPlugin(), Listener {
         val pluginId = 17593 // <-- Replace with the id of your plugin!
 
         Metrics(this, pluginId)
-//
-//        addToolsRecipe(woodenTools, stoneTools, Material.STONE, "WOODEN_", "STONE_")
-//        addToolsRecipe(stoneTools, ironTools, Material.IRON_INGOT, "STONE_", "IRON_")
-//        addToolsRecipe(ironTools, goldenTools, Material.GOLD_INGOT, "IRON_", "GOLDEN_")
-//        addToolsRecipe(goldenTools, diamondTools, Material.DIAMOND, "GOLDEN_", "DIAMOND_")
     }
 
     override fun onDisable() {
