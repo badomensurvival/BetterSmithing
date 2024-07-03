@@ -1,0 +1,26 @@
+# leave upgrade_to or upgrade_item blank to disable upgrading
+
+# upgrade_to is the item that will be created when upgrading the item
+# upgrade_item is the item that will be consumed when upgrading the item
+
+# See https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+template: AIR
+
+tiers:
+  leather:
+    upgrade_to: golden
+    upgrade_item: gold_ingot
+  wooden:
+    upgrade_to: stone
+    upgrade_item: stone
+  stone:
+    upgrade_to: golden
+    upgrade_item: gold_ingot
+  golden:
+    upgrade_to: iron
+    upgrade_item: iron_ingot
+  iron:
+    upgrade_to: diamond
+    upgrade_item: diamond
+
+# This plugin allows you to upgrade your armor and tools using the smithing table.
