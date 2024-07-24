@@ -3,18 +3,19 @@ package dev.baraus.bettersmithing;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.SmithingRecipe;
 import org.bukkit.inventory.SmithingTransformRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class BetterSmithing extends JavaPlugin implements Listener {
+public class BetterSmithing extends JavaPlugin {
 
-    private final List<String> toolTypes = Arrays.asList("SWORD", "SHOVEL", "PICKAXE", "AXE", "HOE");
+    private final List<String> toolTypes = Arrays.asList("SWORD", "SHOVEL", "PICKAXE", "AXE", "HOE", "HELMET", "CHESTPLATE", "LEGGINGS", "BOOTS");
 
     private final Material[] leatherTools = Arrays.stream(Material.values()).filter(
             material -> material.name().startsWith("LEATHER_") && toolTypes.contains(material.name().replace("LEATHER_", ""))
@@ -63,8 +64,6 @@ public class BetterSmithing extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(this, this);
-
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
